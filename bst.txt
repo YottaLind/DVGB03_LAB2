@@ -1,0 +1,287 @@
+[INFO] running in BST mode
+********************************
+        m: menu
+        t: display tree
+
+        a: add value
+        d: delete value
+        f: test membership
+
+        q: quit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+menu> a
+Enter value to be added> 1
+menu> t
+
+    1
+
+Size:      1
+Height:    1
+Inorder:   [1]
+Preorder:  [1]
+Postorder: [1]
+BFS star:  [1]
+
+menu> a
+Enter value to be added> 2
+menu> t
+
+        1
+   *        2
+
+Size:      2
+Height:    2
+Inorder:   [1, 2]
+Preorder:  [1, 2]
+Postorder: [2, 1]
+BFS star:  [1, '*', 2]
+
+menu> a
+Enter value to be added> 3
+menu> t
+
+                1
+       *                2
+   *       *       *        3
+
+Size:      3
+Height:    3
+Inorder:   [1, 2, 3]
+Preorder:  [1, 2, 3]
+Postorder: [3, 2, 1]
+BFS star:  [1, '*', 2, '*', '*', '*', 3]
+
+menu> a
+Enter value to be added> 0
+menu> t
+
+                1
+        0               2
+   *       *       *        3
+
+Size:      4
+Height:    3
+Inorder:   [0, 1, 2, 3]
+Preorder:  [1, 0, 2, 3]
+Postorder: [0, 3, 2, 1]
+BFS star:  [1, 0, 2, '*', '*', '*', 3]
+
+menu> d
+Enter value to be deleted> 1
+menu> t
+
+        2
+    0       3
+
+Size:      3
+Height:    2
+Inorder:   [0, 2, 3]
+Preorder:  [2, 0, 3]
+Postorder: [0, 3, 2]
+BFS star:  [2, 0, 3]
+
+menu> d
+Enter value to be deleted> 2
+menu> t
+
+        0
+   *        3
+
+Size:      2
+Height:    2
+Inorder:   [0, 3]
+Preorder:  [0, 3]
+Postorder: [3, 0]
+BFS star:  [0, '*', 3]
+
+menu> d
+Enter value to be deleted> 3
+menu> d
+Enter value to be deleted> 0
+menu> t
+
+  Tree is empty
+
+menu> a
+Enter value to be added> 10
+menu> a
+Enter value to be added> 5
+menu> a
+Enter value to be added> 3
+menu> a
+Enter value to be added> 7
+menu> a
+Enter value to be added> 15
+menu> a
+Enter value to be added> 13
+menu> a
+Enter value to be added> 17
+menu> t
+
+               10
+        5              15
+    3       7      13      17
+
+Size:      7
+Height:    3
+Inorder:   [3, 5, 7, 10, 13, 15, 17]
+Preorder:  [10, 5, 3, 7, 15, 13, 17]
+Postorder: [3, 7, 5, 13, 17, 15, 10]
+BFS star:  [10, 5, 15, 3, 7, 13, 17]
+
+menu> d
+Enter value to be deleted> 10
+menu> t
+
+                7
+        5              15
+    3      *       13      17
+
+Size:      6
+Height:    3
+Inorder:   [3, 5, 7, 13, 15, 17]
+Preorder:  [7, 5, 3, 15, 13, 17]
+Postorder: [3, 5, 13, 17, 15, 7]
+BFS star:  [7, 5, 15, 3, '*', 13, 17]
+
+menu> d
+Enter value to be deleted> 7
+menu> t
+
+                5
+        3              15
+   *       *       13      17
+
+Size:      5
+Height:    3
+Inorder:   [3, 5, 13, 15, 17]
+Preorder:  [5, 3, 15, 13, 17]
+Postorder: [3, 13, 17, 15, 5]
+BFS star:  [5, 3, 15, '*', '*', 13, 17]
+
+menu> d
+Enter value to be deleted> 5
+menu> t
+
+               13
+        3              15
+   *       *       *       17
+
+Size:      4
+Height:    3
+Inorder:   [3, 13, 15, 17]
+Preorder:  [13, 3, 15, 17]
+Postorder: [3, 17, 15, 13]
+BFS star:  [13, 3, 15, '*', '*', '*', 17]
+
+menu> d
+Enter value to be deleted> 13
+menu> t
+
+       15
+    3      17
+
+Size:      3
+Height:    2
+Inorder:   [3, 15, 17]
+Preorder:  [15, 3, 17]
+Postorder: [3, 17, 15]
+BFS star:  [15, 3, 17]
+
+menu> a
+Enter value to be added> 20
+menu> a
+Enter value to be added> 23
+menu> t
+
+                               15
+                3                              17
+       *               *               *               20
+   *       *       *       *       *       *       *       23
+
+Size:      5
+Height:    4
+Inorder:   [3, 15, 17, 20, 23]
+Preorder:  [15, 3, 17, 20, 23]
+Postorder: [3, 23, 20, 17, 15]
+BFS star:  [15, 3, 17, '*', '*', '*', 20, '*', '*', '*', '*', '*', '*', '*', 23]
+
+menu> a
+Enter value to be added> 5
+menu> a
+Enter value to be added> 4
+menu> t
+
+                               15
+                3                              17
+       *                5              *               20
+   *       *        4      *       *       *       *       23
+
+Size:      7
+Height:    4
+Inorder:   [3, 4, 5, 15, 17, 20, 23]
+Preorder:  [15, 3, 5, 4, 17, 20, 23]
+Postorder: [4, 5, 3, 23, 20, 17, 15]
+BFS star:  [15, 3, 17, '*', 5, '*', 20, '*', '*', 4, '*', '*', '*', '*', 23]
+
+menu> d
+Enter value to be deleted> 15
+menu> t
+
+                                5
+                3                              17
+       *                4              *               20
+   *       *       *       *       *       *       *       23
+
+Size:      6
+Height:    4
+Inorder:   [3, 4, 5, 17, 20, 23]
+Preorder:  [5, 3, 4, 17, 20, 23]
+Postorder: [4, 3, 23, 20, 17, 5]
+BFS star:  [5, 3, 17, '*', 4, '*', 20, '*', '*', '*', '*', '*', '*', '*', 23]
+
+menu> d
+Enter value to be deleted> 5
+menu> t
+
+               17
+        3              20
+   *        4      *       23
+
+Size:      5
+Height:    3
+Inorder:   [3, 4, 17, 20, 23]
+Preorder:  [17, 3, 4, 20, 23]
+Postorder: [4, 3, 23, 20, 17]
+BFS star:  [17, 3, 20, '*', 4, '*', 23]
+
+menu> d
+Enter value to be deleted> 17
+menu> t
+
+                4
+        3              20
+   *       *       *       23
+
+Size:      4
+Height:    3
+Inorder:   [3, 4, 20, 23]
+Preorder:  [4, 3, 20, 23]
+Postorder: [3, 23, 20, 4]
+BFS star:  [4, 3, 20, '*', '*', '*', 23]
+
+menu> d
+Enter value to be deleted> 4
+menu> t
+
+       20
+    3      23
+
+Size:      3
+Height:    2
+Inorder:   [3, 20, 23]
+Preorder:  [20, 3, 23]
+Postorder: [3, 23, 20]
+BFS star:  [20, 3, 23]
+
+menu> q
