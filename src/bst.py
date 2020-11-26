@@ -1,49 +1,83 @@
 #!/usr/bin/env python3
 
-import bt
 import sys
 import logging
 
 log = logging.getLogger(__name__)
 
-class BST(bt.BT):
+
+class BinarySearchTree:
+
+    value = None
+
+    left = None
+    right = None
+
     def __init__(self, value=None):
         '''
-        Initializes an empty tree if `value` is None, else a root with the
-        specified `value` and two empty children.
+        Initializes an empty tree if `value` is None.
         '''
-        self.set_value(value)
-        if not self.is_empty():
-            self.cons(BST(), BST())
+        self.value = value
 
-    def is_member(self, v):
+        if not self.empty():
+            self.construct(BinarySearchTree(), BinarySearchTree())
+
+    def construct(self, left, right):
         '''
-        Returns true if the value `v` is a member of the tree.
+        Constructs a tree rooted at `self`.
         '''
-        logging.info("TODO@src/bst.py: implement is_member()")
-        return False
+        self.left = left
+        self.right = right
+        return self
+
+    def empty(self):
+        '''
+        True if the tree is empty.
+        '''
+        return self.value is None
+
+    def find(self, value):
+        '''
+        True if `value` exist in the tree.
+        '''
+        if self.empty():
+            return False
+        if self.value == value:
+            return True
+        if self.value < value:
+            return self.right.find(value)
+        else:
+            return self.left.find(value)
 
     def size(self):
         '''
-        Returns the number of nodes in the tree.
+        Number of nodes in the tree.
         '''
-        logging.info("TODO@src/bst.py: implement size()")
-        return 0
+        if self.empty():
+            return 0
+        else:
+            left = self.left.height()
+            right = self.right.height()
+            return 1 + left + right
 
     def height(self):
         '''
-        Returns the height of the tree.
+        Maximal height of the tree.
         '''
-        logging.info("TODO@src/bst.py: implement height()")
-        return 0
+        if self.empty():
+            return 0
+        else:
+            left = self.left.height()
+            right = self.right.height()
+            return 1 + max(left, right)
 
     def preorder(self):
         '''
-        Returns a list of all members in preorder.
+        List of members in preorder.
         '''
-        if self.is_empty():
+        if self.empty():
             return []
-        return [self.value()] + self.lc().preorder() + self.rc().preorder()
+        return [self.value()] + self.left.preorder() + self.right.preorder()
 
     def inorder(self):
         '''
@@ -75,27 +109,30 @@ class BST(bt.BT):
         log.info("TODO@src/bst.py: implement bfs_order_star()")
         return []
 
-    def add(self, v):
+    def add(self, value):
         '''
-        Adds the value `v` and returns the new (updated) tree.  If `v` is
-        already a member, the same tree is returned without any modification.
+        Add `value` if not already present in tree.
         '''
-        if self.is_empty():
-            self.__init__(value=v)
+        if self.empty():
+            self.__init__(value=value)
             return self
-        if v < self.value():
-            return self.cons(self.lc().add(v), self.rc())
-        if v > self.value():
-            return self.cons(self.lc(), self.rc().add(v))
+
+        if value < self.value():
+            return self.construct(self.left.add(value), self.right)
+
+        if value > self.value():
+            return self.construct(self.left, self.right.add(value))
+
         return self
-    
-    def delete(self, v):
+
+    def remove(self, value):
         '''
         Removes the value `v` from the tree and returns the new (updated) tree.
         If `v` is a non-member, the same tree is returned without modification.
         '''
-        log.info("TODO@src/bst.py: implement delete()")
+
         return self
+
 
 if __name__ == "__main__":
     log.critical("module contains no main module")

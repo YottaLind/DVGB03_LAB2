@@ -6,7 +6,8 @@ import logging
 
 log = logging.getLogger(__name__)
 
-class AVL(bst.BST):
+
+class AVL(bst.BinarySearchTree):
     def __init__(self, value=None):
         '''
         Initializes an empty tree if `value` is None, else a root with the
@@ -14,7 +15,7 @@ class AVL(bst.BST):
         '''
         self.set_value(value)
         if not self.is_empty():
-            self.cons(AVL(), AVL())
+            self.construct(AVL(), AVL())
 
     def add(self, v):
         '''
@@ -22,8 +23,8 @@ class AVL(bst.BST):
         may remove this function and overide something else if you'd like.
         '''
         log.debug("calling bst.BST.add() explicitly from child")
-        self.balance() # TODO: apply this method correctly for add/delete
-        return bst.BST.add(self, v)
+        self.balance()  # TODO: apply this method correctly for add/delete
+        return bst.BinarySearchTree.add(self, v)
 
     def balance(self):
         '''
@@ -31,7 +32,7 @@ class AVL(bst.BST):
         method applies one of the following if necessary: slr, srr, dlr, drr.
         '''
         log.info("TODO@src/avl.py: implement balance()")
-        self.slr().srr().dlr().drr() # TODO: apply these methods correctly
+        self.slr().srr().dlr().drr()  # TODO: apply these methods correctly
         return self
 
     def slr(self):
@@ -61,6 +62,7 @@ class AVL(bst.BST):
         '''
         log.info("TODO@src/avl.py: implement drr()")
         return self
+
 
 if __name__ == "__main__":
     log.critical("module contains no main module")

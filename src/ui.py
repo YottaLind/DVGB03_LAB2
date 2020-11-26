@@ -6,6 +6,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
+
 class TerminalUI:
     def __init__(self, mode):
         '''
@@ -13,7 +14,7 @@ class TerminalUI:
         '''
         if mode == "bst":
             logging.info("running in BST mode")
-            self._tree = bst.BST()
+            self._tree = bst.BinarySearchTree()
         else:
             logging.info("running in AVL mode")
             self._tree = avl.AVL()
@@ -28,7 +29,7 @@ class TerminalUI:
             if err is not None:
                 self.display_error(err)
                 continue
-            
+
             if opt == "m":
                 self.display_menu()
             elif opt == "t":
@@ -147,7 +148,7 @@ class TerminalUI:
         Returns a list of symbols that the menu defined as valid hotkeys.
         '''
         opts = self.menu_options()
-        return [ o.split(":")[0] for o in opts if len(o.split(":")[0]) == 1 ]
+        return [o.split(":")[0] for o in opts if len(o.split(":")[0]) == 1]
 
     def get_choice(self):
         '''
@@ -177,6 +178,7 @@ class TerminalUI:
         values are are replaced by stars ("*").
         '''
         log.info("TODO@src/ui.py: implement show_2d() using bfs_order_star()")
+
 
 if __name__ == "__main__":
     logging.critical("ui contains no main module")
