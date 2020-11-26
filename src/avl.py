@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
+from tree import BinarySearchTree
 import sys
-import bst
 import logging
 
 log = logging.getLogger(__name__)
 
 
-class AVL(bst.BinarySearchTree):
+class AVL(BinarySearchTree):
     def __init__(self, value=None):
         '''
         Initializes an empty tree if `value` is None, else a root with the
