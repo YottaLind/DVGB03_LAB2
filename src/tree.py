@@ -77,14 +77,17 @@ class BinarySearchTree:
         '''
         if self.empty():
             return []
-        return [self.value()] + self.left.preorder() + self.right.preorder()
+        else:
+            return [self.value] + self.left.preorder() + self.right.preorder()
 
     def inorder(self):
         '''
         Returns a list of all members in inorder.
         '''
-        log.info("TODO@src/bst.py: implement inorder()")
-        return []
+        if self.empty():
+            return []
+        else:
+            return [self.left.inorder()] + self.value + self.right.inorder()
 
     def postorder(self):
         '''
@@ -131,9 +134,52 @@ class BinarySearchTree:
         If `v` is a non-member, the same tree is returned without modification.
         '''
 
+        # base case: key found not in tree
+        if self.empty():
+            return self
+
+        # if given key is less than the root node, recur for left subtree
+        if value < self.value:
+            self.left.remove(value)
+
+        # if given key is more than the root node, recur for right subtree
+        elif value > self.value:
+            self.right.remove(value)
+
+        # key found
+        else:
+
+            # Case 1: node to be deleted has no children (it is a leaf node)
+            if self.left is None and self.right is None:
+                # update root to None
+                self = None
+                return self
+
+            # Case 2: node to be deleted has two children
+            elif self.left and self.right:
+                # find its in-order predecessor node
+                predecessor = self.left.maximum()
+
+                # Copy the value of predecessor to current node
+                self.value = predecessor.value
+
+                # recursively delete the predecessor. Note that the
+                # predecessor will have at-most one child (left child)
+                self.left.remove(predecessor.value)
+
+            # Case 3: node to be deleted has only one child
+            else:
+                # find child node
+                child = self.left if self.left else self.right
+                self = child
+
         return self
 
-
-if __name__ == "__main__":
-    log.critical("module contains no main module")
-    sys.exit(1)
+    def maximum(self):
+        '''
+        Maximum node of tree
+        '''
+        if self.right.empty():
+            return self
+        else:
+            return self.right.maximum()
