@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import bst
+from tree import BinarySearchTree
 import avl
 import logging
 
@@ -14,7 +14,7 @@ class TerminalUI:
         '''
         if mode == "bst":
             logging.info("running in BST mode")
-            self._tree = bst.BinarySearchTree()
+            self._tree = BinarySearchTree()
         else:
             logging.info("running in AVL mode")
             self._tree = avl.AVL()
@@ -65,7 +65,7 @@ class TerminalUI:
         '''
         Shows the tree's structure and content.
         '''
-        if self._tree.is_empty():
+        if self._tree.empty():
             print("\n  Tree is empty\n")
             return
 
@@ -99,7 +99,7 @@ class TerminalUI:
         if err is not None:
             self.display_error(err)
             return
-        self._tree = self._tree.delete(value)
+        self._tree = self._tree.remove(value)
 
     def is_member(self):
         '''is_member:
