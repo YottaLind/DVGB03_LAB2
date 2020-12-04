@@ -87,14 +87,16 @@ class BinarySearchTree:
         if self.empty():
             return []
         else:
-            return [self.left.inorder()] + self.value + self.right.inorder()
+            return self.left.inorder() + [self.value] + self.right.inorder()
 
     def postorder(self):
         '''
         Returns a list of all members in postorder.
         '''
-        log.info("TODO@src/bst.py: implement postorder()")
-        return []
+        if self.empty():
+            return []
+        else:
+            return self.left.inorder() + self.right.inorder() + [self.value]
 
     def bfs_order_star(self):
         '''
@@ -120,10 +122,10 @@ class BinarySearchTree:
             self.__init__(value=value)
             return self
 
-        if value < self.value():
+        if value < self.value:
             return self.construct(self.left.add(value), self.right)
 
-        if value > self.value():
+        if value > self.value:
             return self.construct(self.left, self.right.add(value))
 
         return self
@@ -179,7 +181,7 @@ class BinarySearchTree:
         '''
         Maximum node of tree
         '''
-        if self.right.empty():
+        if self.right is None:
             return self
         else:
             return self.right.maximum()
