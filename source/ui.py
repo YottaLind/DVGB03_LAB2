@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from tree import BinarySearchTree
+from searchtree import BinarySearchTree
 import avl
 import logging
 
