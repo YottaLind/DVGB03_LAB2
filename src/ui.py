@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from searchtree import BinarySearchTree
+import bst
 import avl
 import logging
 
@@ -14,7 +14,7 @@ class TerminalUI:
         '''
         if mode == "bst":
             logging.info("running in BST mode")
-            self._tree = BinarySearchTree()
+            self._tree = bst.BST()
         else:
             logging.info("running in AVL mode")
             self._tree = avl.AVL()
@@ -65,7 +65,7 @@ class TerminalUI:
         '''
         Shows the tree's structure and content.
         '''
-        if self._tree.empty():
+        if self._tree.is_empty():
             print("\n  Tree is empty\n")
             return
 
@@ -99,7 +99,7 @@ class TerminalUI:
         if err is not None:
             self.display_error(err)
             return
-        self._tree = self._tree.remove(value)
+        self._tree = self._tree.delete(value)
 
     def is_member(self):
         '''is_member:
@@ -177,9 +177,25 @@ class TerminalUI:
         Shows a pretty 2D tree based on the output of bfs_order_star(). None
         values are are replaced by stars ("*").
         '''
-        log.info("TODO@src/ui.py: implement show_2d() using bfs_order_star()")
+        nodes = self._tree.bfs_order_star()
+        begin = 0
+        end = line = 1
 
+        for i in range(self._tree.height()):
 
-if __name__ == "__main__":
-    logging.critical("ui contains no main module")
-    sys.exit(1)
+            indentation = (int)(self.menu_width() / line)
+
+            for j in range(begin, end):
+
+                print(
+                    f"\t{nodes[j] if nodes[j] is not None else '*'}".expandtabs(
+                        indentation),
+                    end="")
+
+                print("\t".expandtabs(indentation), end="")
+
+            print("\n")
+
+            begin = end
+            end = (end * 2) + 1
+            line *= 2

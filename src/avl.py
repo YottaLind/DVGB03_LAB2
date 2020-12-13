@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
-from searchtree import BinarySearchTree
 import sys
+import bst
 import logging
 
 log = logging.getLogger(__name__)
 
-
-class AVL(BinarySearchTree):
+class AVL(bst.BST):
     def __init__(self, value=None):
         '''
         Initializes an empty tree if `value` is None, else a root with the
@@ -15,7 +14,7 @@ class AVL(BinarySearchTree):
         '''
         self.set_value(value)
         if not self.is_empty():
-            self.construct(AVL(), AVL())
+            self.cons(AVL(), AVL())
 
     def add(self, v):
         '''
@@ -23,8 +22,8 @@ class AVL(BinarySearchTree):
         may remove this function and overide something else if you'd like.
         '''
         log.debug("calling bst.BST.add() explicitly from child")
-        self.balance()  # TODO: apply this method correctly for add/delete
-        return bst.BinarySearchTree.add(self, v)
+        self.balance() # TODO: apply this method correctly for add/delete
+        return bst.BST.add(self, v)
 
     def balance(self):
         '''
@@ -32,7 +31,7 @@ class AVL(BinarySearchTree):
         method applies one of the following if necessary: slr, srr, dlr, drr.
         '''
         log.info("TODO@src/avl.py: implement balance()")
-        self.slr().srr().dlr().drr()  # TODO: apply these methods correctly
+        self.slr().srr().dlr().drr() # TODO: apply these methods correctly
         return self
 
     def slr(self):
@@ -62,7 +61,6 @@ class AVL(BinarySearchTree):
         '''
         log.info("TODO@src/avl.py: implement drr()")
         return self
-
 
 if __name__ == "__main__":
     log.critical("module contains no main module")
